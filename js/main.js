@@ -2,9 +2,7 @@
 
 // HTML VARIABLES
 let signInBtn = document.getElementById('sign-in-btn');
-let signUpBtn = document.getElementById('sign-up-btn');
-
-
+let signUpBtn = document.getElementById('sign-up-btn')
 let confirmInput = document.getElementById('confpass');
 
 //Array
@@ -14,12 +12,12 @@ let member = loadMember();
 signUpBtn.addEventListener('click', signUpHandler);
 
 function signUpHandler() {
-  let membUser = document.getElementById('user');
-  let membPass = document.getElementById('pass');
+  let membUser = document.getElementById('user').value;
+  let membPass = document.getElementById('pass').value;
   member.push(newMember(membUser, membPass));
   saveMember();
-  // userInput.value= "";
-  // passInput.value= "";
+  membUser.value= "";
+  membPass.value= "";
 
 
   alert("Sign Up Successful");
@@ -29,7 +27,13 @@ function signUpHandler() {
 signInBtn.addEventListener('click', signInHandler);
 
 function signInHandler() {
-  console.log('Sign In Btn Clicked');
+  let memberUserLog = document.getElementById('username').value;
+  let memberPassLog = document.getElementById('password').value;
+  for (let i=0; i< member.length; i++){
+    if(memberUserLog === member[i].membUser && memberPassLog === member[i].membPass){
+      alert("Login Successful");
+    }
+  }
 }
 
 function saveMember(){
@@ -46,7 +50,7 @@ function newMember(memberUser, memberPass ) {//, conf{
     membUser: memberUser,
     membPass: memberPass, 
     // confirmPass: contactNumbers,  
-    completed: false
+    // completed: ""
     
   };
 }
