@@ -14,13 +14,16 @@ signUpBtn.addEventListener('click', signUpHandler);
 function signUpHandler() {
   let membUser = document.getElementById('user').value;
   let membPass = document.getElementById('pass').value;
-  member.push(newMember(membUser, membPass));
-  saveMember();
-  membUser.value= "";
-  membPass.value= "";
-
-
-  alert("Sign Up Successful");
+  for(let i=0; i < member.length;i++){
+    if(membUser === member[i].membUser){
+      alert("Username already in use")
+      return invalid
+    }else{
+      member.push(newMember(membUser, membPass));
+      alert("Sign Up Successful")
+      return success
+    }
+  }
 }
 
 // SIGN IN BTN CLICKED
@@ -32,9 +35,11 @@ function signInHandler() {
   for (let i=0; i< member.length; i++){
     if(memberUserLog === member[i].membUser && memberPassLog === member[i].membPass){
       alert("Login Successful");
-    }
-  }
+      return success;
 }
+}    alert("Invalid User or Password")
+}
+
 
 function saveMember(){
   localStorage.setItem('member', JSON.stringify(member));
@@ -45,12 +50,19 @@ function loadMember(){
   return JSON.parse(memberStr) ?? [];
 }
   
-function newMember(memberUser, memberPass ) {//, conf{
+function newMember(memberUser, memberPass ) {
   return {
     membUser: memberUser,
     membPass: memberPass, 
-    // confirmPass: contactNumbers,  
-    // completed: ""
-    
-  };
+  }
+}
+
+function checkUser(){
+  let checkUser = document.getElementById('username').value;
+  for(let i=0; i < member.length; i++){
+    if(checkUser===member[i].membUser){
+      alert("Username already in use")
+      return alreadyInUse;
+    }
+  }
 }
