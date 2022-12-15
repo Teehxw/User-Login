@@ -14,16 +14,8 @@ signUpBtn.addEventListener('click', signUpHandler);
 function signUpHandler() {
   let membUser = document.getElementById('user').value;
   let membPass = document.getElementById('pass').value;
-  for(let i=0; i < member.length;i++){
-    if(membUser === member[i].membUser){
-      alert("Username already in use")
-      return invalid
-    }else{
-      member.push(newMember(membUser, membPass));
-      alert("Sign Up Successful")
-      return success
-    }
-  }
+  member.push((newMember(membUser,membPass)));
+  checkUser(membUser, membPass);
 }
 
 // SIGN IN BTN CLICKED
@@ -35,9 +27,12 @@ function signInHandler() {
   for (let i=0; i< member.length; i++){
     if(memberUserLog === member[i].membUser && memberPassLog === member[i].membPass){
       alert("Login Successful");
-      return success;
+      break;
+    }else{
+      alert("Invalid User or Password");
+      break;
 }
-}    alert("Invalid User or Password")
+}    
 }
 
 
@@ -57,12 +52,15 @@ function newMember(memberUser, memberPass ) {
   }
 }
 
-function checkUser(){
-  let checkUser = document.getElementById('username').value;
-  for(let i=0; i < member.length; i++){
-    if(checkUser===member[i].membUser){
+function checkUser(user,pass){
+  for(let i=0; i < member.length;i++){
+    if(user === member[i].membUser){
       alert("Username already in use")
-      return alreadyInUse;
+      break;
+    }else{
+      member.push(newMember(user, pass));
+      alert("Sign Up Successful")
+      break;
     }
   }
 }
