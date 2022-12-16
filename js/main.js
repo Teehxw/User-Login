@@ -56,10 +56,13 @@ function checkUser(user,pass){
   for(let i=0; i < member.length;i++){
     if(user === member[i].membUser){
       alert("Username already in use")
-      break;
+      return i
     }
   }
   member.push(newMember(user, pass));
   alert("Sign Up Successful")
+  return -1
+  
+  
 
 }
