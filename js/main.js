@@ -15,6 +15,7 @@ function signUpHandler() {
   let membUser = document.getElementById('user').value;
   let membPass = document.getElementById('pass').value;
   checkUser(membUser, membPass);
+  saveMember();
   
 }
 
@@ -27,12 +28,9 @@ function signInHandler() {
   for (let i=0; i< member.length; i++){
     if(memberUserLog === member[i].membUser && memberPassLog === member[i].membPass){
       alert("Login Successful");
-      break;
-    }else{
-      alert("Invalid User or Password");
-      break;
-}
-}    
+      return -1;
+    }
+  } alert("Invalid Username or Password")
 }
 
 
