@@ -14,8 +14,8 @@ signUpBtn.addEventListener('click', signUpHandler);
 function signUpHandler() {
   let membUser = document.getElementById('user').value;
   let membPass = document.getElementById('pass').value;
-  member.push((newMember(membUser,membPass)));
   checkUser(membUser, membPass);
+  
 }
 
 // SIGN IN BTN CLICKED
@@ -56,11 +56,13 @@ function checkUser(user,pass){
   for(let i=0; i < member.length; i++){
     if(user === member[i].membUser){
       alert("Username already in use")
-      break;
-    }else{
-      member.push(newMember(user, pass));
-      alert("Sign Up Successful")
-      break;
+      return i
     }
   }
+  member.push(newMember(user, pass));
+  alert("Sign Up Successful")
+  return -1
+  
+  
+
 }
